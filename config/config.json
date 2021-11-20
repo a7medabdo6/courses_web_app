@@ -19,6 +19,7 @@
     "password": "HcaPx5qfgc",
     "database": "sql11452040",
     "host": "sql11.freemysqlhosting.net",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "jwtSecret": "jwtSecret"
   }
 }
