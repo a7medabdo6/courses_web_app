@@ -62,7 +62,7 @@ exports.Login = async (req, res) => {
         if (err) throw err;
         res.cookie("token", token, { httpOnly: true, maxAge: 3600 });
 
-        res.json({ token, expiresIn: 3600 });
+        res.send({ user, token, expiresIn: 3600 });
       }
     );
   } catch (e) {
