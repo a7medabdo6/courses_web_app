@@ -10,6 +10,7 @@ connectDB.Sequelize;
 app.use(express.json({ extended: false }));
 //Define route
 app.use("/", require("./routes/User"));
+app.use("/", require("./routes/Category"));
 
 const PORT = process.env.PORT || 5000;
 
