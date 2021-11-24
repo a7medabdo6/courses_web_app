@@ -26,7 +26,30 @@ exports.CreateCategory = async (req, res) => {
 };
 
 /*========================================================================*/
+exports.Allsubcategories = async (req, res) => {
+  console.log(req.params.id, "req.params.id");
+  let classes = await connectDB.Subcategory.findAll({
+    where: {},
+    // include: [{ as: "lessons", model: connectDB.Lesson }],
+  });
+  res.send(classes);
+};
+exports.AllClasses = async (req, res) => {
+  console.log(req.params.id, "req.params.id");
+  let classes = await connectDB.Class.findAll({
+    where: { subcategoryId: req.params.id },
+    ///  attributes: ["id", "title", "description", "subcategoryId"],
 
+    include: [
+      {
+        as: "lessons",
+        model: connectDB.Lesson,
+      },
+    ],
+  });
+
+  res.send(classes);
+};
 exports.CreateSubcategory = async (req, res) => {
   const { title, description, categoryId } = req.body;
   const subcategorydata = {
@@ -41,4 +64,42 @@ exports.CreateSubcategory = async (req, res) => {
   );
 
   res.send(subcategory);
+};
+exports.createClass = async (req, res) => {
+  const { title, description, subcategoryId } = req.body;
+  const subcategorydata = {
+    title,
+    subcategoryId,
+    description,
+  };
+  const classes = await connectDB.Class.create(subcategorydata).catch((err) => {
+    return res.send(err.errors);
+  });
+
+  res.send(classes);
+};
+
+exports.createlesson = async (req, res) => {
+  const { title, description, classId, url } = req.body;
+  const subcategorydata = {
+    title,
+    classId,
+    description,
+    url,
+  };
+  const lesson = await connectDB.Lesson.create(subcategorydata).catch((err) => {
+    return res.send(err.errors);
+  });
+
+  res.send(lesson);
+};
+
+exports.getspecificlessons = async (req, res) => {
+  console.log(req.params.id, "req.params.id");
+  let lessons = await connectDB.Lesson.findAll({
+    where: { classId: req.params.id },
+    ///  attributes: ["id", "title", "description", "subcategoryId"],
+  });
+
+  res.send(lessons);
 };

@@ -28,6 +28,17 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+    await queryInterface.addConstraint("Classes", {
+      type: "foreign key",
+      fields: ["subcategoryId"],
+      name: "subcategoryId",
+      references: {
+        table: "Subcategories",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("Classes");

@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "sql11452040",
-    "password": "HcaPx5qfgc",
+    "username": "root",
+    "password": "toor",
     "database": "sql11452040",
-    "host": "sql11.freemysqlhosting.net",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "jwtSecret": "jwtSecret"
   },

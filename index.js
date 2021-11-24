@@ -12,7 +12,7 @@ app.use(express.json({ extended: false }));
 app.use("/", require("./routes/User"));
 app.use("/", require("./routes/Category"));
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
   console.log(`Server started on ports ${PORT} `);
